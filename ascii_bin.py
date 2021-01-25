@@ -1,5 +1,7 @@
 import numpy as np
 import scipy.misc as smp
+from PIL import Image
+
 
 bit_on  = [255, 255, 255] # RGB value if bit is 1
 bit_off = [0, 0, 0] # RGB value if bit is 0
@@ -16,8 +18,8 @@ def data_to_matrix(data:list) -> np.array:
 
     return col_array
 
-def main(inp:list) -> None:
+def generate(inp:list) -> None:
     col_array = data_to_matrix(inp)
 
-    img = smp.toimage(col_array)
-    img.show()
+    img = Image.fromarray(col_array, "RGB")
+    img.save("ascii_bin-image.jpg")

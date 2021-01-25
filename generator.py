@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 import sys
-from ascii_bin import main as ascii_bin
+import ascii_bin
 
 method_pointers = {
-    "ascii_bin": ascii_bin
+    "ascii_bin": ascii_bin.generate
 }
 
 
@@ -24,4 +24,8 @@ def generate_image(file:str, method:str = "ascii_bin", bytesize:int = 8) -> None
 
 
 if __name__ == "__main__":
-    generate_image(sys.argv[3], sys.argv[1], int(sys.argv[2]))
+    try:
+        generate_image(sys.argv[3], sys.argv[1], int(sys.argv[2]))
+    except Exception as err:
+        print("\033[91m./generator.py (method:str) (bytesize:int) (dimensions:str (WxH)) (input_file:str)\033[0m")
+        raise err
